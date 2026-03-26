@@ -1,12 +1,9 @@
 # codex-openspec-plan
 
-这是 `document-test` 工作区当前 OpenSpec 体系的一页式层级地图。
+这是 `document-test` 工作区当前 OpenSpec 体系的首页摘要。
 
-目标不是罗列全部 change 名字，而是回答三件事：
-
-- 当前到底讨论了哪些层级
-- 整个项目主线怎么串起来
-- 每个层级大概有多少 OpenSpec 计划、研究和摘要材料
+如果你只想快速知道这个项目“分成哪些层、总共有多少计划、现在大致做到哪”，看 README 就够。
+如果你要看真正按层级展开的版本，请直接看 [list.md](./list.md)。
 
 ## 当前总数
 
@@ -18,7 +15,7 @@
 
 `运行基座/transport -> 规则治理 -> 搜索与路由 -> OpenSpec 计划 -> 实施状态 -> Artifact/缓存/Trace -> 记忆/Recall -> A2A/多执行面协作 -> 工具/技能工作流 -> 研究/评审/审计`
 
-## 层级地图
+## 层级摘要
 
 | 层级 | 它回答什么问题 | OpenSpec change 数量 |
 |---|---|---:|
@@ -41,17 +38,16 @@
 
 ## 研究与摘要
 
-| 类型 | 说明 | 数量 |
-|---|---|---:|
-| 严格 research/study 型 OpenSpec change | 名称属于 `research-*` 或 `study-*` 的 change | 2 |
-| 放宽到 research/study/evaluate/audit 型 change | 把评估与审计也算进研究视角 | 4 |
-| `summary` 文件 | 文件名直接带 `summary` 的摘要文件 | 3 |
-| `review/brief/report` 文件 | 评审、brief、report 类配套文档 | 5 |
-| 研究/摘要类文件合计 | `summary + review + brief + report` | 8 |
+| 类型 | 数量 |
+|---|---:|
+| 严格 research/study 型 OpenSpec change | 2 |
+| 放宽到 research/study/evaluate/audit 型 change | 4 |
+| `summary` 文件 | 3 |
+| `review / brief / report` 文件 | 5 |
+| 合计 | 8 |
 
-## 备注
+## 说明
 
-- 这份 README 是“脉络图”，不是 change 明细表。
-- `实施状态层` 是横切视角，不是一个独立主题域。
-- 如果只记最短版本，可以记成：
-  `规则 -> 搜索 -> 计划 -> 实施 -> artifact -> 记忆 -> A2A -> 工具 -> 研究`
+- README 是首页摘要。
+- [list.md](./list.md) 是详细分层版，不是 README 的复制粘贴。
+- `OpenSpec 计划层` 和 `实施状态层` 都是横切视角，不是单独业务主题。
