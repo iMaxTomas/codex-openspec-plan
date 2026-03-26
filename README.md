@@ -45,6 +45,11 @@
 | 工具/技能工作流层 | 把能力变成 Obsidian、gitagent、canvas、bili 等可复用工作流 | 10 |
 | 纯研究/论文框架层 | 论文深读和方法框架沉淀 | 1 |
 
+
+## 可复用openspec计划项目
+
+
+
 ```text
 [Tree Expansion]
 .
