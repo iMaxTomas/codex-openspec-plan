@@ -13,10 +13,10 @@
 ```text
 [00 基座/transport] -> [01 规则治理] -> [01.2 搜索/路由] -> [02 OpenSpec 计划面] -> [02.1 实施状态]
         |                    |                    |                     |                        |
-        |=> host / VM103     |=> explanation      |=> memory 还是 web   |=> proposal / design    |=> archived      =  2
-        |=> NFS / SMB        |=> minimal context  |=> trace-first       |=> tasks / specs        |=> full not arch = 28
-        |=> runner / hook    |=> review / gates   |=> routing plane     |=> 全部 51 个 change    |=> over half     =  7
-        |=> provider lanes   |=> rollout control  |=> quote provenance  |=> planning surface     |=> early / plan  = 14
+        |=> host / VM103     |=> explanation      |=> memory 还是 web   |=> proposal / design    |=> archived      =  9
+        |=> NFS / SMB        |=> minimal context  |=> trace-first       |=> tasks / specs        |=> full not arch = 23
+        |=> runner / hook    |=> review / gates   |=> routing plane     |=> 全部 54 个 change    |=> over half     =  7
+        |=> provider lanes   |=> rollout control  |=> quote provenance  |=> planning surface     |=> early / plan  = 15
         |
         +----------------------------------------------------------------------------------------------+
                                                                                                        |
@@ -36,14 +36,14 @@
 
 ## 可复用 OpenSpec 计划项目
 
-按架构层看当前已经公开的可复用项目。完整目录见 [openspec-project-files/README.md](./openspec-project-files/README.md)。
+按架构层看当前公开可复用的计划包。完整目录见 [openspec-project-files/README.md](./openspec-project-files/README.md)。
 
 | 架构层 | 作用 | OpenSpec change 数量 | 可复用计划项目 |
 |---|---|---:|---|
-| 规则治理 | 管长期规则边界、解释顺序、执行面治理和 DevOps 纪律 | 11 | [01-active-surface-and-archive-discipline](./openspec-project-files/01-active-surface-and-archive-discipline/) [02-minimal-context-and-curated-skills](./openspec-project-files/02-minimal-context-and-curated-skills/) [03-codex-explanation-order-rules](./openspec-project-files/03-codex-explanation-order-rules/) [07-openspec-and-codex-devops-workflow](./openspec-project-files/07-openspec-and-codex-devops-workflow/) |
-| 搜索与路由 | 管 quote、artifact、memory 的路由顺序和 provenance contract | 5 | [04-trace-first-quote-routing](./openspec-project-files/04-trace-first-quote-routing/) [06-openmemory-recall-mvp](./openspec-project-files/06-openmemory-recall-mvp/) |
-| Artifact / 缓存 / 可观测性 | 管本地 artifact cache、DVC 版本层和 Langfuse trace 体系 | 8 | [09-artifact-first-local-cache-mvp](./openspec-project-files/second-tier-sanitized/09-artifact-first-local-cache-mvp/) [10-langfuse-observability-foundation](./openspec-project-files/second-tier-sanitized/10-langfuse-observability-foundation/) [11-dvc-artifact-foundation](./openspec-project-files/second-tier-sanitized/11-dvc-artifact-foundation/) |
-| 记忆 / Recall | 管 durable/session/evidence 分层、recall budget 和最小 recall 接入 | 4 | [05-memory-governance-and-recall-policy](./openspec-project-files/05-memory-governance-and-recall-policy/) [06-openmemory-recall-mvp](./openspec-project-files/06-openmemory-recall-mvp/) |
+| 规则治理 | 管长期规则边界、解释顺序、执行面治理和 DevOps 纪律 | 11 | [01-active-surface-and-archive-discipline](./openspec-project-files/01-active-surface-and-archive-discipline/)<br>[02-minimal-context-and-curated-skills](./openspec-project-files/02-minimal-context-and-curated-skills/)<br>[03-codex-explanation-order-rules](./openspec-project-files/03-codex-explanation-order-rules/)<br>[07-openspec-and-codex-devops-workflow](./openspec-project-files/07-openspec-and-codex-devops-workflow/) |
+| 搜索与路由 | 管 quote、artifact、memory 的路由顺序和 provenance contract | 5 | [04-trace-first-quote-routing](./openspec-project-files/04-trace-first-quote-routing/)<br>[06-openmemory-recall-mvp](./openspec-project-files/06-openmemory-recall-mvp/) |
+| Artifact / 缓存 / 可观测性 | 管本地 artifact cache、DVC 版本层和 Langfuse trace 体系 | 8 | [09-artifact-first-local-cache-mvp](./openspec-project-files/second-tier-sanitized/09-artifact-first-local-cache-mvp/)<br>[10-langfuse-observability-foundation](./openspec-project-files/second-tier-sanitized/10-langfuse-observability-foundation/)<br>[11-dvc-artifact-foundation](./openspec-project-files/second-tier-sanitized/11-dvc-artifact-foundation/) |
+| 记忆 / Recall | 管 durable/session/evidence 分层、recall budget 和最小 recall 接入 | 4 | [05-memory-governance-and-recall-policy](./openspec-project-files/05-memory-governance-and-recall-policy/)<br>[06-openmemory-recall-mvp](./openspec-project-files/06-openmemory-recall-mvp/) |
 | 工具 / 技能工作流 | 把表达方式和工作流固化成 skill 或可复用操作方法 | 10 | [08-shell-semantic-canvas-skill](./openspec-project-files/08-shell-semantic-canvas-skill/) |
 | 研究 / 评审 / 审计 | 管论文深读、研究框架和后续 review / brief / report 的沉淀；研究相关统计是 `strict research/study = 2`、`broad research/evaluate/audit = 4`、`summary = 3`、`review / brief / report = 5` | 1 | [12-agent-context-paper-framework](./openspec-project-files/second-tier-sanitized/12-agent-context-paper-framework/) |
 
@@ -70,13 +70,13 @@
 ├── 02 OpenSpec 计划面
 │   ├── proposal / design
 │   ├── tasks / specs
-│   ├── 全部 51 个 change
+│   ├── 全部 54 个 change
 │   └── planning surface
 ├── 02.1 实施状态
-│   ├── archived      =  2
-│   ├── full not arch = 28
+│   ├── archived      =  9
+│   ├── full not arch = 23
 │   ├── over half     =  7
-│   └── early / plan  = 14
+│   └── early / plan  = 15
 ├── 03 Artifact / cache / trace
 │   ├── artifact-first cache
 │   ├── DVC versioning
