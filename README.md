@@ -49,7 +49,9 @@
 
 ## 可复用openspec计划项目
 
-公开仓库里已经整理出 8 个更适合复用的计划包，统一放在 [openspec-project-files/README.md](./openspec-project-files/README.md)。
+公开仓库里已经整理出两组可复用计划包：
+- 第一梯队 8 个，统一放在 [openspec-project-files/README.md](./openspec-project-files/README.md)
+- 第二梯队 4 个脱敏公开包，统一放在 [openspec-project-files/second-tier-sanitized/README.md](./openspec-project-files/second-tier-sanitized/README.md)
 
 这些计划包都保留了：
 - `proposal.md`
@@ -74,6 +76,7 @@
 说明：
 - 这些公开版保留了原始 OpenSpec 核心文件，方便直接下载改造。
 - 部分文件仍带有原始项目名或路径，复用前先看各目录里的 `evolution.md`。
+- second-tier 公开包额外附带 `sanitization-notes.md`，用来说明哪些字段已经替换、哪些字段仍需本地化。
 
 
 

@@ -1,6 +1,9 @@
 # 可复用 OpenSpec 计划项目
 
-这里收纳的是 8 个更适合公开复用的 OpenSpec 计划包。
+这里收纳的是两组可公开复用的 OpenSpec 计划包：
+
+- 第一梯队：8 个低环境绑定 package
+- 第二梯队：4 个经过脱敏后公开的 package
 
 每个子目录都包含：
 - `proposal.md`
@@ -8,6 +11,7 @@
 - `tasks.md`
 - `specs/`
 - `evolution.md`
+- second-tier package 额外包含 `sanitization-notes.md`
 
 使用说明：
 - 这些 `proposal/design/tasks/specs` 是从当前 `document-test` 工作区复制出来的核心 OpenSpec 文件。
@@ -20,6 +24,17 @@
 2. 再用 `02-minimal-context-and-curated-skills` 和 `03-codex-explanation-order-rules` 管住长期规则层。
 3. 之后接 `04-trace-first-quote-routing`、`05-memory-governance-and-recall-policy`、`06-openmemory-recall-mvp` 建 recall 与 provenance 主线。
 4. 最后再看 `07-openspec-and-codex-devops-workflow` 和 `08-shell-semantic-canvas-skill`，把治理与表达能力固化下来。
+
+## 第二梯队脱敏公开包
+
+第二梯队统一放在：
+
+- [second-tier-sanitized/README.md](./second-tier-sanitized/README.md)
+
+它们适合这样使用：
+- 先看第一梯队，理解治理和方法层
+- 再看 second-tier，理解 artifact / observability / DVC / 研究框架这些更接近执行现场的计划
+- second-tier 默认都按 `reusable after local replacement` 看待
 
 ## 目录索引
 
@@ -49,6 +64,7 @@
 - `06-openmemory-recall-mvp`
 - `07-openspec-and-codex-devops-workflow`
 - `08-shell-semantic-canvas-skill`
+- `second-tier-sanitized/*`
 
 这 3 个依然很值得复用，但通常需要先替换：
 - repo 名
