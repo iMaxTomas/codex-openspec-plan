@@ -50,4 +50,5 @@
 
 - README 是首页摘要。
 - [list.md](./list.md) 是详细分层版，不是 README 的复制粘贴。
+- [timeline-shell-canvas.md](./timeline-shell-canvas.md) 是按时间顺序展开、参考 topology grammar 重画的 shell 白板版本。
 - `OpenSpec 计划层` 和 `实施状态层` 都是横切视角，不是单独业务主题。
