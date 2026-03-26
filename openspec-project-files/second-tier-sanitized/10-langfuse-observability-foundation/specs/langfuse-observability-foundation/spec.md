@@ -40,5 +40,5 @@ The system SHALL prioritize Codex as the first ingestion target and SHALL assume
 - **THEN** Codex is treated as the first target and integration is designed around external capture rather than requiring an in-client hooks system
 
 #### Scenario: Other clients are deferred behind Codex
-- **WHEN** Claude Code, OpenClaw, and Gemini are considered for observability onboarding
+- **WHEN** Claude Code, <future-control-plane>, and Gemini are considered for observability onboarding
 - **THEN** they are treated as follow-up integrations after the Codex-first event path is defined

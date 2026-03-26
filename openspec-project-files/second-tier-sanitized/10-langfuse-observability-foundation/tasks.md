@@ -20,7 +20,7 @@
 
 - [x] 3.1 Define the Codex-first ingestion path using an external wrapper or bridge
 - [x] 3.2 Define how Claude Code hooks can become a later ingestion source
-- [x] 3.3 Define how OpenClaw later reports or relays traces without becoming the only truth layer
+- [x] 3.3 Define how <future-control-plane> later reports or relays traces without becoming the only truth layer
 - [x] 3.4 Define Gemini as a later follow-up target, not a first-phase blocker
 
 ## 4. Deployment And Operations Planning

@@ -6,7 +6,7 @@
 
 - 选定 `Langfuse` 作为第一优先的 agent observability backend
 - 明确 `trace / artifact / memory` 的分层边界，避免 Langfuse 与 DVC、RecallNest 职责重叠
-- 定义面向 `Codex / OpenClaw / Claude / Gemini` 的薄 ingestion adapter 边界
+- 定义面向 `Codex / <future-control-plane> / Claude / Gemini` 的薄 ingestion adapter 边界
 - 定义 `Codex-first` 的分阶段 rollout，承认 `Codex` 当前缺少公开 hooks 的现实限制
 - 固定首阶段默认值：
   - `Codex` 优先
@@ -26,6 +26,6 @@
 ## Impact
 
 - 影响当前 `artifact-first` 蓝图的后续 observability 路线
-- 为未来 `Codex` 外部 wrapper、`OpenClaw` gateway 事件采集、`Claude Code hooks` 接入提供统一目标后端
+- 为未来 `Codex` 外部 wrapper、`<future-control-plane>` gateway 事件采集、`Claude Code hooks` 接入提供统一目标后端
 - 明确 `DVC` 继续负责 raw artifact versioning，`RecallNest` 继续负责 shared memory，不由 Langfuse 替代
 - 为后续 Langfuse 本地 Docker 自托管评估与 Codex-first wrapper 接入 change 提供规划基础

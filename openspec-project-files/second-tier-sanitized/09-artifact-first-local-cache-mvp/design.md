@@ -18,7 +18,7 @@
 - DVC versioning
 - MLflow / trace 平台
 - W&B 协作层
-- OpenClaw 完整 control plane
+- <future-control-plane> 完整 control plane
 
 ## Goals / Non-Goals
 
@@ -121,7 +121,7 @@ MVP 需要两类验证：
 - [风险] helper 设计过早泛化 -> 缓解：只覆盖当前 search/web/github 基本流程
 - [风险] summary 生成仍太长 -> 缓解：明确 compact payload 结构
 - [风险] 仓库内缓存膨胀 -> 缓解：后续再定义 retention / DVC 迁移规则
-- [风险] 过早与 OpenClaw 耦合 -> 缓解：当前只做 Codex-first local MVP
+- [风险] 过早与 <future-control-plane> 耦合 -> 缓解：当前只做 Codex-first local MVP
 
 ## Migration Plan
 

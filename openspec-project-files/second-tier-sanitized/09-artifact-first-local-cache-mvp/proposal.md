@@ -10,7 +10,7 @@
 - 提供第一个 cache-first wrapper / fetch helper
 - 用一条搜索流和一条网页或 GitHub 流验证“先查缓存、未命中才联网、再只回摘要”
 
-只有这一步完成后，后续 DVC、MLflow/trace 和 OpenClaw 控制平面接入才有稳固底座。
+只有这一步完成后，后续 DVC、MLflow/trace 和 <future-control-plane> 控制平面接入才有稳固底座。
 
 ## What Changes
 
@@ -34,5 +34,5 @@
 ## Impact
 
 - 影响当前 `Codex` 的搜索、网页和 GitHub 访问工作流
-- 为未来 `OpenClaw` 接入同一套 artifact foundation 提供现成底座
+- 为未来 `<future-control-plane>` 接入同一套 artifact foundation 提供现成底座
 - 为后续 DVC、MLflow/trace 和 W&B 接入提供已存在的文件与元数据结构

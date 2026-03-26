@@ -16,7 +16,7 @@
 在此前比较中，`Langfuse`、`LangSmith`、`Braintrust` 都是候选，但当前路径更偏：
 
 - `Codex` 为当前主执行器
-- `OpenClaw` 为未来控制平面
+- `<future-control-plane>` 为未来控制平面
 - 本地优先 / 自托管友好
 - 不希望被某一 agent framework 过度绑定
 
@@ -24,7 +24,7 @@
 
 当前已经确认的默认值是：
 
-- 长期目标：`OpenClaw` 以后成为所有 agent 的统一入口与控制平面
+- 长期目标：`<future-control-plane>` 以后成为所有 agent 的统一入口与控制平面
 - 第一阶段：只先覆盖 `Codex`
 - 首阶段目标：先能搜索和检索这些记录
 - 采集范围：
@@ -49,7 +49,7 @@
 - 固定 `Langfuse` 为第一优先 agent observability backend
 - 明确 `trace / artifact / memory / checkpoint` 的边界
 - 定义最小事件模型，覆盖聊天、tool calls、bash/CLI 执行、错误、routing 与 artifact handles
-- 定义 `Codex / Claude / Gemini / OpenClaw` 的接入边界，优先 `Codex-first`
+- 定义 `Codex / Claude / Gemini / <future-control-plane>` 的接入边界，优先 `Codex-first`
 - 固定“只写薄 ingestion adapter，不重造 observability backend”的原则
 - 为后续实现 change 提供分阶段 rollout 与部署前提
 
@@ -58,7 +58,7 @@
 - 本 change 不部署 Langfuse
 - 本 change 不替换现有 `artifact-cache + DVC`
 - 本 change 不引入新的 shared memory backend
-- 本 change 不实现 OpenClaw control plane
+- 本 change 不实现 <future-control-plane> control plane
 - 本 change 不做 LangSmith / Braintrust 的进一步实现接入
 
 ## Decisions
@@ -70,7 +70,7 @@
 原因：
 
 - `Langfuse` 更符合开源、自托管、本地优先路线
-- 更适合作为 `Codex / OpenClaw / RecallNest / DVC` 上方的中立 trace 层
+- 更适合作为 `Codex / <future-control-plane> / RecallNest / DVC` 上方的中立 trace 层
 - 不会像 `LangSmith` 那样带来更强的 LangChain/LangGraph 架构重力
 - 不会像 `Braintrust` 那样过早把重点推向 eval-first / production analysis-first
 
@@ -153,13 +153,13 @@
 - 当前已有成熟平台与现成参考
 - 自建平台会与此前“只写接缝层”的路线冲突
 
-### 4. Codex-first 采用外部采集，Claude/OpenClaw 后续接入
+### 4. Codex-first 采用外部采集，Claude/<future-control-plane> 后续接入
 
 接入顺序 SHALL 为：
 
 1. `Codex`
 2. `Claude Code`
-3. `OpenClaw`
+3. `<future-control-plane>`
 4. `Gemini`
 
 `Codex` 首阶段优先通过外部 wrapper / sidecar / API-adapter 采集，而不是假设存在等价于 `Claude Code hooks` 的能力。
@@ -169,7 +169,7 @@
 - 当前 `Codex` 没有像 `Claude Code` 那样明确、公开、稳定的 hooks 入口
 - `Codex` 又是当前主执行器，先接入收益最高
 - `Claude Code` 后续可利用 hooks 直接接入
-- `OpenClaw` 更适合等 trace backend 稳定后，再由 gateway 层统一上报
+- `<future-control-plane>` 更适合等 trace backend 稳定后，再由 gateway 层统一上报
 
 替代方案：
 
@@ -184,12 +184,12 @@
 - `session_id`
 - `artifact_handle`
 
-后续如果 `OpenClaw` 成为统一入口，再考虑由 gateway 统一生成这些标识。
+后续如果 `<future-control-plane>` 成为统一入口，再考虑由 gateway 统一生成这些标识。
 
 原因：
 
 - 当前第一阶段只覆盖 `Codex`
-- `OpenClaw` 未来虽是唯一入口，但现在还不是首阶段阻塞点
+- `<future-control-plane>` 未来虽是唯一入口，但现在还不是首阶段阻塞点
 - 先由 wrapper 生成标识可以最快跑通本地 Langfuse 事件模型
 
 ### 5. 最小事件模型先覆盖 6 类事件
@@ -250,7 +250,7 @@
 
 - 远端生产化部署
 - 全工具接入
-- OpenClaw 统一控制平面
+- <future-control-plane> 统一控制平面
 
 原因：
 
@@ -272,11 +272,11 @@
 3. 定义最小事件模型与上报边界
 4. 固定 Codex-first 接入策略与外部采集路线
 5. 固定本地 self-host Docker 的首阶段验证路线
-6. 明确 Claude/OpenClaw/Gemini 的后续接入顺序
+6. 明确 Claude/<future-control-plane>/Gemini 的后续接入顺序
 7. 起 follow-up implementation change，专门处理 Langfuse 部署评估与 Codex-first ingestion
 
 ## Open Questions
 
 - Codex 首阶段更适合通过哪种薄接缝进入 Langfuse：CLI wrapper、外部 API bridge，还是会话录制器
-- OpenClaw 后续上报 trace 时，是 gateway 统一发，还是由各 worker adapter 直接发
+- <future-control-plane> 后续上报 trace 时，是 gateway 统一发，还是由各 worker adapter 直接发
 - Claude Code hooks 接入时，哪些 payload 应只保留 metadata，哪些可以保留 transcript path 引用

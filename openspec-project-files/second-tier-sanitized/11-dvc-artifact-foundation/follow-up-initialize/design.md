@@ -37,7 +37,7 @@ This change executes that plan with minimal scope.
 
 ### 1. Initialize DVC At Repo Root
 
-DVC SHOULD be initialized at `/home/imax/document/test`.
+DVC SHOULD be initialized at `<repo-root>`.
 
 ### 2. Track Only Selected Directories
 
