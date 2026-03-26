@@ -30,56 +30,6 @@
                                                                                                 v
                                                       [05 工具 / 技能工作流] -> [06 研究 / 评审 / 审计]
 
-[Tree Expansion]
-.
-├── 00 运行基座 / transport
-│   ├── host / VM103
-│   ├── NFS / SMB
-│   ├── runner / hook
-│   └── provider lanes
-├── 01 规则治理
-│   ├── explanation order
-│   ├── minimal context
-│   ├── review / runtime gates
-│   └── rollout control
-├── 01.2 搜索与路由
-│   ├── memory 还是 web
-│   ├── trace-first routing
-│   ├── routing control plane
-│   └── quote provenance
-├── 02 OpenSpec 计划面
-│   ├── proposal / design
-│   ├── tasks / specs
-│   ├── 全部 51 个 change
-│   └── planning surface
-├── 02.1 实施状态
-│   ├── archived      =  2
-│   ├── full not arch = 28
-│   ├── over half     =  7
-│   └── early / plan  = 14
-├── 03 Artifact / cache / trace
-│   ├── artifact-first cache
-│   ├── DVC versioning
-│   ├── Langfuse observability
-│   └── codex-first ingest
-├── 04 Memory / Recall
-│   ├── durable / session / evidence
-│   ├── RecallNest continuity
-│   ├── memory governance
-│   └── recall reuse
-├── 04.1 A2A / 多执行面协作
-│   ├── host Codex supervisor
-│   ├── transport surface
-│   ├── VM103 lanes
-│   └── evidence / handoff / recall
-├── 05 工具 / 技能工作流
-│   ├── Obsidian / canvas
-│   ├── gitagent / shell skills
-│   └── bili / workflow packaging
-└── 06 研究 / 评审 / 审计
-    ├── paper study
-    ├── evaluate / audit
-    └── review / brief / report
 ```
 
 ## 四栏状态
@@ -151,6 +101,59 @@
 | 记忆/Recall 层 | durable/session/evidence 怎么分层，RecallNest 怎么工作 | 4 |
 | 工具/技能工作流层 | 把能力变成 Obsidian、gitagent、canvas、bili 等可复用工作流 | 10 |
 | 纯研究/论文框架层 | 论文深读和方法框架沉淀 | 1 |
+
+```text
+[Tree Expansion]
+.
+├── 00 运行基座 / transport
+│   ├── host / VM103
+│   ├── NFS / SMB
+│   ├── runner / hook
+│   └── provider lanes
+├── 01 规则治理
+│   ├── explanation order
+│   ├── minimal context
+│   ├── review / runtime gates
+│   └── rollout control
+├── 01.2 搜索与路由
+│   ├── memory 还是 web
+│   ├── trace-first routing
+│   ├── routing control plane
+│   └── quote provenance
+├── 02 OpenSpec 计划面
+│   ├── proposal / design
+│   ├── tasks / specs
+│   ├── 全部 51 个 change
+│   └── planning surface
+├── 02.1 实施状态
+│   ├── archived      =  2
+│   ├── full not arch = 28
+│   ├── over half     =  7
+│   └── early / plan  = 14
+├── 03 Artifact / cache / trace
+│   ├── artifact-first cache
+│   ├── DVC versioning
+│   ├── Langfuse observability
+│   └── codex-first ingest
+├── 04 Memory / Recall
+│   ├── durable / session / evidence
+│   ├── RecallNest continuity
+│   ├── memory governance
+│   └── recall reuse
+├── 04.1 A2A / 多执行面协作
+│   ├── host Codex supervisor
+│   ├── transport surface
+│   ├── VM103 lanes
+│   └── evidence / handoff / recall
+├── 05 工具 / 技能工作流
+│   ├── Obsidian / canvas
+│   ├── gitagent / shell skills
+│   └── bili / workflow packaging
+└── 06 研究 / 评审 / 审计
+    ├── paper study
+    ├── evaluate / audit
+    └── review / brief / report
+```
 
 研究与摘要类产物单独看：
 
