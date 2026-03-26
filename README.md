@@ -36,28 +36,16 @@
 
 ## 可复用 OpenSpec 计划项目
 
-主页这里不再按梯队看，而是按架构层来看。完整下载索引仍在：
-- [openspec-project-files/README.md](./openspec-project-files/README.md)
-- [openspec-project-files/second-tier-sanitized/README.md](./openspec-project-files/second-tier-sanitized/README.md)
+按架构层看当前已经公开的可复用项目。完整目录见 [openspec-project-files/README.md](./openspec-project-files/README.md)。
 
-这些公开包统一保留：
-- `proposal.md`
-- `design.md`
-- `tasks.md`
-- `specs/`
-- `evolution.md`
-
-其中 second-tier 脱敏公开包还额外带 `sanitization-notes.md`。
-
-| 架构层 | 它回答什么问题 | OpenSpec change 数量 | 可复用计划项目 | 研究/摘要与复用说明 |
-|---|---|---:|---|---|
-| 运行基座与 A2A / transport | host/VM103/NFS/SMB/runner/双 Codex/多 provider 怎么协作 | 12 | 当前主页不主推通用公开包 | 这层环境绑定强，更适合当架构参考而不是原样下载 |
-| 规则治理 | AI 应该怎么解释、怎么治理、怎么避免低级错误和上下文膨胀 | 11 | `01-active-surface-and-archive-discipline` `02-minimal-context-and-curated-skills` `03-codex-explanation-order-rules` `07-openspec-and-codex-devops-workflow` | 治理型 package 最容易直接复用 |
-| 搜索与路由 | 先查 memory 还是先搜网页，quote/provenance 怎么路由 | 5 | `04-trace-first-quote-routing` `06-openmemory-recall-mvp` | 适合先复用 contract，再替换自己的路由入口 |
-| Artifact / 缓存 / 可观测性 | 结果怎么落盘、缓存、版本化、追踪 | 8 | `09-artifact-first-local-cache-mvp` `10-langfuse-observability-foundation` `11-dvc-artifact-foundation` | 已有脱敏公开包；默认按 `reusable after local replacement` 使用 |
-| 记忆 / Recall | durable/session/evidence 怎么分层，RecallNest 怎么工作 | 4 | `05-memory-governance-and-recall-policy` `06-openmemory-recall-mvp` | 适合先复用分层和 budget，再替换具体 provider |
-| 工具 / 技能工作流 | 把能力变成 Obsidian、gitagent、canvas、bili 等可复用工作流 | 10 | `08-shell-semantic-canvas-skill` | 当前公开包以 skill 设计和表达方法为主 |
-| 研究 / 评审 / 审计 | 论文深读、evaluate、audit、review 怎么组织 | 1 | `12-agent-context-paper-framework` | `strict research/study = 2` `broad research/evaluate/audit = 4` `summary = 3` `review / brief / report = 5` |
+| 架构层 | 作用 | OpenSpec change 数量 | 可复用计划项目 |
+|---|---|---:|---|
+| 规则治理 | 管长期规则边界、解释顺序、执行面治理和 DevOps 纪律 | 11 | [01-active-surface-and-archive-discipline](./openspec-project-files/01-active-surface-and-archive-discipline/) [02-minimal-context-and-curated-skills](./openspec-project-files/02-minimal-context-and-curated-skills/) [03-codex-explanation-order-rules](./openspec-project-files/03-codex-explanation-order-rules/) [07-openspec-and-codex-devops-workflow](./openspec-project-files/07-openspec-and-codex-devops-workflow/) |
+| 搜索与路由 | 管 quote、artifact、memory 的路由顺序和 provenance contract | 5 | [04-trace-first-quote-routing](./openspec-project-files/04-trace-first-quote-routing/) [06-openmemory-recall-mvp](./openspec-project-files/06-openmemory-recall-mvp/) |
+| Artifact / 缓存 / 可观测性 | 管本地 artifact cache、DVC 版本层和 Langfuse trace 体系 | 8 | [09-artifact-first-local-cache-mvp](./openspec-project-files/second-tier-sanitized/09-artifact-first-local-cache-mvp/) [10-langfuse-observability-foundation](./openspec-project-files/second-tier-sanitized/10-langfuse-observability-foundation/) [11-dvc-artifact-foundation](./openspec-project-files/second-tier-sanitized/11-dvc-artifact-foundation/) |
+| 记忆 / Recall | 管 durable/session/evidence 分层、recall budget 和最小 recall 接入 | 4 | [05-memory-governance-and-recall-policy](./openspec-project-files/05-memory-governance-and-recall-policy/) [06-openmemory-recall-mvp](./openspec-project-files/06-openmemory-recall-mvp/) |
+| 工具 / 技能工作流 | 把表达方式和工作流固化成 skill 或可复用操作方法 | 10 | [08-shell-semantic-canvas-skill](./openspec-project-files/08-shell-semantic-canvas-skill/) |
+| 研究 / 评审 / 审计 | 管论文深读、研究框架和后续 review / brief / report 的沉淀；研究相关统计是 `strict research/study = 2`、`broad research/evaluate/audit = 4`、`summary = 3`、`review / brief / report = 5` | 1 | [12-agent-context-paper-framework](./openspec-project-files/second-tier-sanitized/12-agent-context-paper-framework/) |
 
 
 
