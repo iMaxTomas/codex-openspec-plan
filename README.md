@@ -6,6 +6,7 @@
 如果你要看真正按层级展开的版本，请直接看 [list.md](./list.md)。
 如果你要看时间顺序的线框版，请直接看 [timeline-shell-canvas.md](./timeline-shell-canvas.md)。
 如果你要看当前治理后的四栏进度，请直接看 [lane-progress/README.md](./lane-progress/README.md)。
+如果你要直接下载可复用的 OpenSpec 计划包，请看 [openspec-project-files/README.md](./openspec-project-files/README.md)。
 
 ## Main Time Spine
 
@@ -47,6 +48,32 @@
 
 
 ## 可复用openspec计划项目
+
+公开仓库里已经整理出 8 个更适合复用的计划包，统一放在 [openspec-project-files/README.md](./openspec-project-files/README.md)。
+
+这些计划包都保留了：
+- `proposal.md`
+- `design.md`
+- `tasks.md`
+- `specs/`
+- `evolution.md`
+
+当前优先推荐这 8 个：
+
+| 计划包 | 作用 |
+|---|---|
+| `01-active-surface-and-archive-discipline` | 管理 `active / pending / backlog / archive-queue` 四栏执行面 |
+| `02-minimal-context-and-curated-skills` | 收敛长期配置边界，避免上下文膨胀 |
+| `03-codex-explanation-order-rules` | 固定复杂系统的解释顺序 |
+| `04-trace-first-quote-routing` | 修正 quote / artifact / memory 的路由和 provenance |
+| `05-memory-governance-and-recall-policy` | 给记忆层补 authority、budget、lifecycle |
+| `06-openmemory-recall-mvp` | 提供最小可运行的 recall 接入路径 |
+| `07-openspec-and-codex-devops-workflow` | 统一 OpenSpec、repo 规则和配置推广流程 |
+| `08-shell-semantic-canvas-skill` | 把 shell 白板式解释固化成 skill 计划 |
+
+说明：
+- 这些公开版保留了原始 OpenSpec 核心文件，方便直接下载改造。
+- 部分文件仍带有原始项目名或路径，复用前先看各目录里的 `evolution.md`。
 
 
 
