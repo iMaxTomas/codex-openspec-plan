@@ -66,7 +66,7 @@
 - `08-shell-semantic-canvas-skill`
 - `second-tier-sanitized/*`
 
-这 3 个依然很值得复用，但通常需要先替换：
+这些 package 依然很值得复用，但通常需要先替换：
 - repo 名
 - 路径
 - 运行时名
