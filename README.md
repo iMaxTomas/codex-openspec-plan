@@ -5,11 +5,32 @@
 如果你只想快速知道这个项目“分成哪些层、总共有多少计划、现在大致做到哪”，看 README 就够。
 如果你要看真正按层级展开的版本，请直接看 [list.md](./list.md)。
 如果你要看时间顺序的线框版，请直接看 [timeline-shell-canvas.md](./timeline-shell-canvas.md)。
+如果你要看当前治理后的四栏进度，请直接看 [lane-progress/README.md](./lane-progress/README.md)。
 
 ## Main Time Spine
 
 ```text
-[Main Time Spine]
+[00 基座/transport] -> [01 规则治理] -> [01.2 搜索/路由] -> [02 OpenSpec 计划面] -> [02.1 实施状态]
+        |                    |                    |                     |                        |
+        |=> host / VM103     |=> explanation      |=> memory 还是 web   |=> proposal / design    |=> archived      =  2
+        |=> NFS / SMB        |=> minimal context  |=> trace-first       |=> tasks / specs        |=> full not arch = 28
+        |=> runner / hook    |=> review / gates   |=> routing plane     |=> 全部 51 个 change    |=> over half     =  7
+        |=> provider lanes   |=> rollout control  |=> quote provenance  |=> planning surface     |=> early / plan  = 14
+        |
+        +----------------------------------------------------------------------------------------------+
+                                                                                                       |
+                                                                                                       v
+                   [03 Artifact / cache / trace] -> [04 Memory / Recall] -> [04.1 A2A / 多执行面协作]
+                              |                               |                                |
+                              |=> artifact-first cache        |=> durable / session / evidence |=> host Codex supervisor
+                              |=> DVC versioning              |=> RecallNest continuity         |   -> transport surface
+                              |=> Langfuse observability      |=> memory governance             |   -> VM103 lanes
+                              |=> codex-first ingest          |=> recall reuse                  |   => evidence / handoff / recall
+                                                                                                |
+                                                                                                v
+                                                      [05 工具 / 技能工作流] -> [06 研究 / 评审 / 审计]
+
+[Tree Expansion]
 .
 ├── 00 运行基座 / transport
 │   ├── host / VM103
@@ -93,28 +114,3 @@
 | `review / brief / report` 文件 | 5 |
 | 合计 | 8 |
 
-## Auto Sync
-
-这个目录现在已经有独立脚本目录，自动同步脚本放在里面：
-
-```text
-scripts/
-└── auto-sync.sh
-```
-
-这个目录可以作为独立 git 仓库自动同步到 GitHub。
-
-- 脚本：`scripts/auto-sync.sh`
-- 监听方式：`inotifywait`
-- 特点：非轮询、带 quiet-period debounce、单实例锁、自动 `git add/commit/push`
-
-常用命令：
-
-```bash
-./scripts/auto-sync.sh watch
-./scripts/auto-sync.sh sync-once
-./scripts/auto-sync.sh status
-./scripts/auto-sync.sh stop
-```
-
-默认会把变更推到当前分支对应的 `origin`，并忽略 `.git/` 和 `.autosync-state/`。

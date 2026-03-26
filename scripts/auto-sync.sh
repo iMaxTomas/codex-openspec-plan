@@ -9,6 +9,9 @@ lock_file="$state_dir/watch.lock"
 pid_file="$state_dir/watch.pid"
 debounce_seconds="${AUTO_SYNC_DEBOUNCE_SECONDS:-2}"
 remote_name="${AUTO_SYNC_REMOTE:-origin}"
+repo_name="$(basename "$repo_root")"
+unit_name="${AUTO_SYNC_UNIT_NAME:-${repo_name}-auto-sync.service}"
+unit_file="$state_dir/$unit_name"
 
 mkdir -p "$state_dir"
 
@@ -31,19 +34,24 @@ branch_name="${AUTO_SYNC_BRANCH:-$(current_branch)}"
 
 usage() {
   cat <<EOF
-Usage: $(basename "$0") <watch|sync-once|status|stop>
+Usage: $(basename "$0") <watch|sync-once|status|stop|install-user-service|uninstall-user-service|service-status|service-logs>
 
 Commands:
   watch      Start an inotify-based watcher and auto-push on file changes
   sync-once  Stage, commit, and push current changes once
   status     Show watcher status and recent log tail
   stop       Stop the running watcher
+  install-user-service    Render and enable a systemd --user watcher service
+  uninstall-user-service  Disable the systemd --user watcher service
+  service-status          Show systemd --user service status
+  service-logs            Show recent journal lines for the systemd --user service
 
 Environment:
   AUTO_SYNC_DEBOUNCE_SECONDS  Quiet period before a sync, default: 2
   AUTO_SYNC_REMOTE            Git remote to push to, default: origin
   AUTO_SYNC_BRANCH            Branch to push, default: current branch
   AUTO_SYNC_STATE_DIR         State directory, default: .autosync-state
+  AUTO_SYNC_UNIT_NAME         systemd --user unit name, default: <repo>-auto-sync.service
 EOF
 }
 
@@ -56,9 +64,32 @@ require_git() {
   command -v git >/dev/null 2>&1 || die "git is required"
 }
 
+require_systemctl() {
+  command -v systemctl >/dev/null 2>&1 || die "systemctl is required"
+}
+
 require_repo() {
   git -C "$repo_root" rev-parse --is-inside-work-tree >/dev/null 2>&1 || die "not a git repo: $repo_root"
   git -C "$repo_root" remote get-url "$remote_name" >/dev/null 2>&1 || die "missing remote: $remote_name"
+}
+
+systemd_user_available() {
+  command -v systemctl >/dev/null 2>&1 && systemctl --user show-environment >/dev/null 2>&1
+}
+
+require_systemd_user() {
+  require_systemctl
+  systemd_user_available || die "systemd --user bus is unavailable; run inside a user login session"
+}
+
+require_safe_unit_paths() {
+  if [[ "$repo_root" =~ [[:space:]] ]]; then
+    die "repo path contains spaces and cannot be embedded safely in ExecStart: $repo_root"
+  fi
+
+  if [[ "$script_dir" =~ [[:space:]] ]]; then
+    die "script path contains spaces and cannot be embedded safely in ExecStart: $script_dir"
+  fi
 }
 
 build_commit_message() {
@@ -101,6 +132,51 @@ ensure_fast_forward_base() {
 
   log "remote branch diverged; manual pull/rebase required before auto-sync can continue"
   return 1
+}
+
+render_user_service_unit() {
+  require_safe_unit_paths
+
+  cat >"$unit_file" <<EOF
+[Unit]
+Description=Auto-sync git changes for $repo_name
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=$repo_root
+Environment=AUTO_SYNC_STATE_DIR=$state_dir
+Environment=AUTO_SYNC_DEBOUNCE_SECONDS=$debounce_seconds
+Environment=AUTO_SYNC_REMOTE=$remote_name
+Environment=AUTO_SYNC_BRANCH=$branch_name
+ExecStart=$script_dir/auto-sync.sh watch
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target
+EOF
+}
+
+install_user_service() {
+  require_repo
+  require_systemd_user
+
+  render_user_service_unit
+  systemctl --user daemon-reload
+  systemctl --user enable --now "$unit_file" >/dev/null
+  log "enabled systemd --user service: $unit_name"
+}
+
+uninstall_user_service() {
+  require_systemd_user
+
+  systemctl --user disable --now "$unit_name" >/dev/null 2>&1 || true
+  systemctl --user reset-failed "$unit_name" >/dev/null 2>&1 || true
+  rm -f "$unit_file"
+  systemctl --user daemon-reload
+  log "disabled systemd --user service: $unit_name"
 }
 
 sync_once() {
@@ -165,6 +241,17 @@ watch_loop() {
 }
 
 show_status() {
+  if command -v systemctl >/dev/null 2>&1; then
+    if systemd_user_available; then
+      local active enabled
+      active="$(systemctl --user is-active "$unit_name" 2>/dev/null || true)"
+      enabled="$(systemctl --user is-enabled "$unit_name" 2>/dev/null || true)"
+      printf 'user service: %s (%s)\n' "${active:-unknown}" "${enabled:-unknown}"
+    else
+      printf 'user service: unavailable in current session\n'
+    fi
+  fi
+
   if [[ -f "$pid_file" ]]; then
     local pid
     pid="$(cat "$pid_file")"
@@ -184,12 +271,28 @@ show_status() {
 }
 
 stop_watcher() {
+  if systemd_user_available && systemctl --user is-active --quiet "$unit_name"; then
+    systemctl --user stop "$unit_name"
+    log "stopped systemd --user service: $unit_name"
+    return 0
+  fi
+
   [[ -f "$pid_file" ]] || die "watcher is not running"
   local pid
   pid="$(cat "$pid_file")"
   kill "$pid"
   rm -f "$pid_file"
   log "stopped watcher pid $pid"
+}
+
+service_status() {
+  require_systemd_user
+  systemctl --user --no-pager --full status "$unit_name"
+}
+
+service_logs() {
+  require_systemd_user
+  journalctl --user -u "$unit_name" -n "${AUTO_SYNC_JOURNAL_LINES:-50}" --no-pager
 }
 
 cmd="${1:-}"
@@ -206,6 +309,18 @@ case "$cmd" in
     ;;
   stop)
     stop_watcher
+    ;;
+  install-user-service)
+    install_user_service
+    ;;
+  uninstall-user-service)
+    uninstall_user_service
+    ;;
+  service-status)
+    service_status
+    ;;
+  service-logs)
+    service_logs
     ;;
   *)
     usage
