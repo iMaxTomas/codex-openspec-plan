@@ -113,13 +113,3 @@
     ├── evaluate / audit
     └── review / brief / report
 ```
-
-研究与摘要类产物单独看：
-
-| 类型 | 数量 |
-|---|---:|
-| 严格 research/study 型 OpenSpec change | 2 |
-| 放宽到 research/study/evaluate/audit 型 change | 4 |
-| `summary` 文件 | 3 |
-| `review / brief / report` 文件 | 5 |
-| 合计 | 8 |
