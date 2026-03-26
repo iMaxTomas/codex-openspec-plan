@@ -2,6 +2,8 @@
 
 这里收纳的是第二梯队公开包。
 
+中文： [README.md](./README.md) | English: [README.en.md](./README.en.md)
+
 这些包和第一梯队的差别是：
 - 它们同样完整，`proposal / design / tasks / specs` 都已经闭环
 - 但环境绑定更强

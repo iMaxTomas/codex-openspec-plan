@@ -2,6 +2,8 @@
 
 这是 `document-test` 工作区当前 OpenSpec 体系的首页摘要。
 
+English: [README.en.md](./README.en.md)
+
 如果你只想快速知道这个项目“分成哪些层、总共有多少计划、现在大致做到哪”，看 README 就够。
 如果你要看真正按层级展开的版本，请直接看 [list.md](./list.md)。
 如果你要看时间顺序的线框版，请直接看 [timeline-shell-canvas.md](./timeline-shell-canvas.md)。

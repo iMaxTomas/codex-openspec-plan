@@ -2,6 +2,8 @@
 
 这是当前 OpenSpec 治理 change 同步到公开仓库的一份简化视图。
 
+English: [README.en.md](./README.en.md)
+
 更新时间：`2026-03-26`
 
 当前四栏计数：

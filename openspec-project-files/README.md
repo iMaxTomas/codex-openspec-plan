@@ -2,6 +2,8 @@
 
 这里收纳的是两组可公开复用的 OpenSpec 计划包：
 
+English: [README.en.md](./README.en.md)
+
 - 第一梯队：8 个低环境绑定 package
 - 第二梯队：4 个经过脱敏后公开的 package
 
