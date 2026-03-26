@@ -5,6 +5,30 @@
 如果你只想快速知道这个项目“分成哪些层、总共有多少计划、现在大致做到哪”，看 README 就够。
 如果你要看真正按层级展开的版本，请直接看 [list.md](./list.md)。
 
+## Main Time Spine
+
+```text
+[00 基座/transport] -> [01 规则治理] -> [01.2 搜索/路由] -> [02 OpenSpec 计划面] -> [02.1 实施状态]
+        |                    |                    |                     |                        |
+        |=> host / VM103     |=> explanation      |=> memory 还是 web   |=> proposal / design    |=> archived      =  2
+        |=> NFS / SMB        |=> minimal context  |=> trace-first       |=> tasks / specs        |=> full not arch = 28
+        |=> runner / hook    |=> review / gates   |=> routing plane     |=> 全部 51 个 change    |=> over half     =  7
+        |=> provider lanes   |=> rollout control  |=> quote provenance  |=> planning surface     |=> early / plan  = 14
+        |
+        +----------------------------------------------------------------------------------------------+
+                                                                                                       |
+                                                                                                       v
+                   [03 Artifact / cache / trace] -> [04 Memory / Recall] -> [04.1 A2A / 多执行面协作]
+                              |                               |                                |
+                              |=> artifact-first cache        |=> durable / session / evidence |=> host Codex supervisor
+                              |=> DVC versioning              |=> RecallNest continuity         |   -> transport surface
+                              |=> Langfuse observability      |=> memory governance             |   -> VM103 lanes
+                              |=> codex-first ingest          |=> recall reuse                  |   => evidence / handoff / recall
+                                                                                                |
+                                                                                                v
+                                                      [05 工具 / 技能工作流] -> [06 研究 / 评审 / 审计]
+```
+
 ## 当前总数
 
 - OpenSpec change 总数：`51`
