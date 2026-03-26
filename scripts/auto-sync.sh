@@ -52,6 +52,10 @@ require_tools() {
   command -v inotifywait >/dev/null 2>&1 || die "inotifywait is required"
 }
 
+require_git() {
+  command -v git >/dev/null 2>&1 || die "git is required"
+}
+
 require_repo() {
   git -C "$repo_root" rev-parse --is-inside-work-tree >/dev/null 2>&1 || die "not a git repo: $repo_root"
   git -C "$repo_root" remote get-url "$remote_name" >/dev/null 2>&1 || die "missing remote: $remote_name"
@@ -75,7 +79,10 @@ build_commit_message() {
 }
 
 ensure_fast_forward_base() {
-  git -C "$repo_root" fetch "$remote_name" "$branch_name" >/dev/null 2>&1 || return 1
+  if ! git -C "$repo_root" fetch "$remote_name" "$branch_name" >>"$log_file" 2>&1; then
+    log "failed to fetch $remote_name/$branch_name; check network or credentials"
+    return 1
+  fi
 
   local local_sha remote_sha base_sha
   local_sha="$(git -C "$repo_root" rev-parse HEAD)"
@@ -191,7 +198,7 @@ case "$cmd" in
     watch_loop
     ;;
   sync-once)
-    require_tools
+    require_git
     sync_once
     ;;
   status)
@@ -205,4 +212,3 @@ case "$cmd" in
     exit 1
     ;;
 esac
-
