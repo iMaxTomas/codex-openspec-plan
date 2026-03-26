@@ -76,3 +76,22 @@
 - [list.md](./list.md) 是详细分层版，不是 README 的复制粘贴。
 - [timeline-shell-canvas.md](./timeline-shell-canvas.md) 是按时间顺序展开、参考 topology grammar 重画的 shell 白板版本。
 - `OpenSpec 计划层` 和 `实施状态层` 都是横切视角，不是单独业务主题。
+
+## Auto Sync
+
+这个目录现在可以作为独立 git 仓库自动同步到 GitHub。
+
+- 脚本：`scripts/auto-sync.sh`
+- 监听方式：`inotifywait`
+- 特点：非轮询、带 quiet-period debounce、单实例锁、自动 `git add/commit/push`
+
+常用命令：
+
+```bash
+./scripts/auto-sync.sh watch
+./scripts/auto-sync.sh sync-once
+./scripts/auto-sync.sh status
+./scripts/auto-sync.sh stop
+```
+
+默认会把变更推到当前分支对应的 `origin`，并忽略 `.git/` 和 `.autosync-state/`。
