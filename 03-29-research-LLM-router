@@ -1,0 +1,270 @@
+• 我按你的需求把研究分成 4 组
+  ├── 1. 低端模型先铺量，高端模型只做约束/纠偏
+  ├── 2. 多 agent 分层编排，尤其是软件工程 / 规划工作流
+  ├── 3. 人类只看结构化回包，不盯全过程自然语言
+  └── 4. 记忆 / 上下文 / 成本控制
+
+  先给总判断
+  ├── 你的方向不是拍脑袋
+  └── 研究上最接近的是一个“组合答案”
+      ├── `FrugalGPT / Hybrid LLM / RouteLLM`
+      │   └── 支撑“低端先跑，高端少出手”
+      ├── `Self-Refine / Reflexion`
+      │   └── 支撑“低端初稿 + 高端约束回路”
+      ├── `AutoGen / ChatDev / MetaGPT`
+      │   └── 支撑“多 agent 编排软件工程流程”
+      └── `OrchVis / HITL / XAI`
+          └── 支撑“人类看结构化状态，不微操每一步”
+
+  1. 最支持你“低端先做，高端只做值钱判断”的研究
+  ├── `FrugalGPT`
+  │   ├── 注释
+  │   │   └── 经典“模型级级联 / cascade”论文
+  │   ├── 跟你最像的点
+  │   │   ├── 便宜模型先处理
+  │   │   ├── 只有难题才升级到贵模型
+  │   │   └── 目标不是总 token 最少
+  │   │       └── 而是贵 token 更值钱
+  │   └── 对你当前的启发
+  │       └── `rewrite / light-freeze / checklist / 初稿`
+  │           默认放低端 lane
+  ├── `Hybrid LLM: Cost-Efficient and Quality-Aware Query Routing`
+  │   ├── 注释
+  │   │   └── 小模型/大模型路由，按难度和目标质量动态切换
+  │   ├── 跟你最像的点
+  │   │   ├── 不是所有任务都进高端模型
+  │   │   └── 可以动态调 quality threshold
+  │   └── 对你当前的启发
+  │       └── 你说的 `threshold` 是对位的
+  ├── `RouteLLM`
+  │   ├── 注释
+  │   │   └── 用偏好数据做 LLM 路由
+  │   ├── 跟你最像的点
+  │   │   ├── 先判断题目值不值得高端模型
+  │   │   └── 不是“统一都上 GPT-5.4 / Opus”
+  │   └── 对你当前的启发
+  │       └── 可以把 `是否升格到高端 lane` 做成路由器
+  ├── `RouterBench`
+  │   ├── 注释
+  │   │   └── 专门评估多模型路由系统
+  │   └── 对你当前的启发
+  │       └── 你后面需要一个“路由效果评估面”
+  └── `LLM Cascades with Mixture of Thoughts`
+      ├── 注释
+      │   └── 用一致性/难度估计决定要不要升级强模型
+      └── 对你当前的启发
+          └── 低端模型不是随便初稿
+              └── 它要输出“我自己有多确定”
+
+  2. 最支持你“低端模型先改写，高端模型做约束回路”的研究
+  ├── `Self-Refine`
+  │   ├── 注释
+  │   │   └── 初稿 -> 反馈 -> 再改
+  │   ├── 跟你最像的点
+  │   │   ├── 低端先出草稿
+  │   │   ├── 再给约束 / 反馈
+  │   │   └── 再收紧输出
+  │   └── 对你当前的启发
+  │       └── 你说的“让高端模型把低端模型约束成有生产力”
+  │           跟这条很接近
+  └── `Reflexion`
+      ├── 注释
+      │   └── 通过 verbal feedback（语言反馈）修正 agent 行为
+      ├── 跟你最像的点
+      │   ├── 高端模型不一定亲自重写
+      │   └── 可以只给“反思 / 纠偏信号”
+      └── 对你当前的启发
+          └── 高端模型更适合当
+              ├── `constraint judge`（约束裁判）
+              └── `route corrector`（路线纠偏器）
+
+  3. 最支持你“103 当生产总控，host 只做控制”的研究
+  ├── `AutoGen`
+  │   ├── 注释
+  │   │   └── 经典 multi-agent conversation framework
+  │   ├── 跟你最像的点
+  │   │   ├── 人可以参与，但不必写每一步
+  │   │   ├── agent 之间可分角色
+  │   │   └── 支持工具和任务编排
+  │   └── 对你当前的启发
+  │       └── host 更像 supervisor，不像首稿工
+  ├── `ChatDev`
+  │   ├── 注释
+  │   │   └── 软件开发专向的多 agent 沟通框架
+  │   ├── 跟你最像的点
+  │   │   ├── 角色分工
+  │   │   ├── 设计/编码/测试分层
+  │   │   └── 靠“沟通链”而不是一个模型包打一切
+  │   └── 对你当前的启发
+  │       └── OpenSpec workflow 适合拆角色，不适合全压 host
+  ├── `MetaGPT`
+  │   ├── 注释
+  │   │   └── 把 SOP（标准操作流程）嵌入 multi-agent
+  │   ├── 跟你最像的点
+  │   │   ├── 不靠自由发挥
+  │   │   ├── 用流程和职责减少串线
+  │   │   └── 很适合你现在的 `proposal/design/spec/tasks`
+  │   └── 对你当前的启发
+  │       └── OpenSpec 应该被做成 SOP，不是口头协作
+  └── `Lemon Agent`
+      ├── 注释
+      │   └── orchestrator-worker 双层结构 + 分层上下文管理
+      ├── 跟你最像的点
+      │   ├── 上层总控
+      │   ├── 下层 worker
+      │   ├── 并行 worker
+      │   └── context 分层
+      └── 对你当前的启发
+          └── 你现在的
+              ├── host
+              ├── VM103 commander
+              └── 4 lane
+              非常适合按两层收口
+
+  4. 最支持你“人类不要盯全程自然语言，而看结构化状态”的研究
+  ├── `OrchVis`
+  │   ├── 注释
+  │   │   └── hierarchical orchestration + human oversight visualization
+  │   ├── 跟你最像的点
+  │   │   ├── 人类不微操
+  │   │   ├── 看 planning panel / dependency / state
+  │   │   └── 有冲突时再介入
+  │   └── 对你当前的启发
+  │       └── 你说的
+  │           ├── `status.json`
+  │           ├── shell panel
+  │           ├── dashboard
+  │           └── MassGen 观察层
+  │           是对的
+  ├── `XAI 2.0 manifesto`
+  │   ├── 注释
+  │   │   └── 不是 agent 论文，但很支持“可解释状态面”
+  │   └── 对你当前的启发
+  │       └── 你需要的不是聊天摘要
+  │           └── 是“可验证、可扫读、可定位问题”的结构化解释
+  └── `Human-in-the-Loop` 相关工作
+      ├── 注释
+      │   └── 核心共识是：人放在关键节点，不放在每一步
+      └── 对你当前的启发
+          └── host 只该管
+              ├── 错路
+              ├── 高风险
+              ├── 关键 acceptance
+              └── archive / branch 最终决策
+
+  5. 最支持你“OpenSpec 不该由 host 单独生产”的结论
+  ├── 研究没有直接写“OpenSpec”
+  │   └── 这是我根据论文做的推断
+  ├── 但最接近的共同结论是
+  │   ├── 复杂任务适合分层
+  │   ├── 高端模型适合做关键判断
+  │   ├── 低端模型适合做大量首轮处理
+  │   ├── 人类适合盯关键节点
+  │   └── 结构化状态比自然语言流水账更适合监督
+  └── 所以
+      └── 你要的架构方向是有研究支撑的
+
+  6. 研究最支持你接下来补什么
+  ├── 第一优先
+  │   └── `threshold router`
+  │       ├── 任务先分档
+  │       └── 决定
+  │           ├── 只 low-tier rewrite
+  │           ├── 103 单跑
+  │           ├── 103 + reviewer
+  │           └── 103 + full 4-lane
+  ├── 第二优先
+  │   └── `constraint loop`
+  │       ├── 低端 lane 出初稿
+  │       ├── 高端 lane 给约束
+  │       └── 低端 lane 再出修订稿
+  ├── 第三优先
+  │   └── `structured change summary`
+  │       ├── good_signals
+  │       ├── bad_signals
+  │       ├── risk_flags
+  │       ├── missing_inputs
+  │       └── verdict_candidate
+  └── 第四优先
+      └── `observation layer`
+          ├── status.json
+          ├── shell panel
+          ├── dashboard
+          └── 只在必要时再让 host 解释
+
+  7. 研究里也提醒你的风险
+  ├── 1. 多 agent 不一定更省总 token
+  │   └── 它更可能是“省高端 token，增总 token”
+  ├── 2. rewrite lane 很容易偷偷改意图
+  │   └── 所以必须有 rewrite contract
+  ├── 3. 结构化输出并不天然可靠
+  │   └── 仍然需要 acceptance rubric
+  ├── 4. 多 agent 没有 SOP 会很快串线
+  │   └── 这就是 `MetaGPT` 值得你学的地方
+  └── 5. 可观测性如果做不好
+      └── 你只会得到“更多窗口”，不是“更少认知负担”
+
+  8. 我帮你压成一句最像你当前需求的研究配方
+  ├── `FrugalGPT / Hybrid LLM / RouteLLM`
+  │   └── 负责“哪些任务值得贵模型”
+  ├── `Self-Refine / Reflexion`
+  │   └── 负责“低端初稿 + 高端约束回路”
+  ├── `MetaGPT / ChatDev / AutoGen`
+  │   └── 负责“多 agent 生产 OpenSpec 工作流”
+  └── `OrchVis / HITL`
+      └── 负责“人类只看关键状态，不看全部过程”
+
+  最短结论
+  ├── 你的方向有研究支撑
+  ├── 最值得抄的不是单篇论文
+  └── 而是这 4 类组合
+      ├── 路由
+      ├── 约束回路
+      ├── 多 agent SOP
+      └── 观察/人类在环
+
+  来源
+  ├── `FrugalGPT`
+  │   └── https://arxiv.org/abs/2305.05176
+  ├── `Hybrid LLM: Cost-Efficient and Quality-Aware Query Routing`
+  │   └── https://arxiv.org/abs/2404.14618
+  ├── `RouteLLM`
+  │   └── https://arxiv.org/abs/2406.18665
+  ├── `RouterBench`
+  │   └── https://arxiv.org/abs/2403.12031
+  ├── `LLM Cascades with Mixture of Thoughts`
+  │   └── https://openreview.net/forum?id=7Vcy9gnDQX
+  ├── `Self-Refine`
+  │   └── https://arxiv.org/abs/2303.17651
+  ├── `Reflexion`
+  │   └── https://arxiv.org/abs/2303.11366
+  ├── `ReAct`
+  │   └── https://arxiv.org/abs/2210.03629
+  ├── `AutoGen`
+  │   └── https://arxiv.org/abs/2308.08155
+  ├── `ChatDev`
+  │   └── https://aclanthology.org/2024.acl-long.810/
+  ├── `MetaGPT`
+  │   └── https://arxiv.org/abs/2308.00352
+  ├── `Lemon Agent`
+  │   └── https://arxiv.org/abs/2602.07092
+  ├── `OrchVis`
+  │   └── https://arxiv.org/abs/2510.24937
+  ├── `A survey on LLM-based autonomous agents`
+  │   └── https://doi.org/10.1007/s11704-024-40231-1
+  └── `The Rise and Potential of LLM Based Agents: A Survey`
+      └── https://arxiv.org/abs/2309.07864
+
+  如果继续
+  ├── 我下一步最适合做的
+  │   └── 不是继续泛搜
+  └── 而是
+      └── 直接把这些研究压成一条新 OpenSpec
+          └── `design-a2a-openspec-remote-orchestration`
+              并把
+              ├── threshold
+              ├── rewrite contract
+              ├── constraint loop
+              ├── structured change summary
+              └── observation layer
+              全部写进 design
