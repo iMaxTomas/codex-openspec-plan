@@ -4,7 +4,7 @@
 
 English: [README.en.md](./README.en.md)
 
-- 第一梯队：8 个低环境绑定 package
+- 第一梯队：9 个低环境绑定 package
 - 第二梯队：4 个经过脱敏后公开的 package
 
 每个子目录都包含：
@@ -25,7 +25,8 @@ English: [README.en.md](./README.en.md)
 1. 先用 `01-active-surface-and-archive-discipline` 收窄执行面。
 2. 再用 `02-minimal-context-and-curated-skills` 和 `03-codex-explanation-order-rules` 管住长期规则层。
 3. 之后接 `04-trace-first-quote-routing`、`05-memory-governance-and-recall-policy`、`06-openmemory-recall-mvp` 建 recall 与 provenance 主线。
-4. 最后再看 `07-openspec-and-codex-devops-workflow` 和 `08-shell-semantic-canvas-skill`，把治理与表达能力固化下来。
+4. 再看 `07-openspec-and-codex-devops-workflow` 和 `09-strategy-card-output-governance`，把治理门和大输出命令管住。
+5. 最后看 `08-shell-semantic-canvas-skill`，把表达能力固化下来。
 
 ## 第二梯队脱敏公开包
 
@@ -50,6 +51,7 @@ English: [README.en.md](./README.en.md)
 | `06-openmemory-recall-mvp` | 想加最小 recall，但不想把 artifact/trace 职责搅乱 | [evolution.md](./06-openmemory-recall-mvp/evolution.md) |
 | `07-openspec-and-codex-devops-workflow` | OpenSpec、repo 规则、host 配置和验证门槛没有统一工作流 | [evolution.md](./07-openspec-and-codex-devops-workflow/evolution.md) |
 | `08-shell-semantic-canvas-skill` | 想把高价值的 shell 白板解释固化成可复用 skill | [evolution.md](./08-shell-semantic-canvas-skill/evolution.md) |
+| `09-strategy-card-output-governance` | 大输出命令、sidecar、wrapper、artifact 和二次搜索缺少开工前合同 | [evolution.md](./09-strategy-card-output-governance/evolution.md) |
 
 ## 哪些最容易直接复用
 
@@ -58,6 +60,7 @@ English: [README.en.md](./README.en.md)
 - `03-codex-explanation-order-rules`
 - `04-trace-first-quote-routing`
 - `05-memory-governance-and-recall-policy`
+- `09-strategy-card-output-governance`
 
 这 5 个最偏治理和方法论，环境绑定最低。
 
